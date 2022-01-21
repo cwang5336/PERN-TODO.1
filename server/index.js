@@ -4,6 +4,7 @@ const cors = require("cors");
 const pool = require("./db");
 const { json } = require("express");
 
+
 //middleware
 app.use(cors());
 app.use(express.json()); //req.body
@@ -74,6 +75,33 @@ app.delete("/todos/:id", async(req, res) => {
     }
 });
 
+
+// const express = require("express");
+const compression = require("compression"); 
+const bodyParser = require("body-parser"); 
+const db = require("./db"); 
+// const cors = require("cors");
+// const app = express(); 
+
+//middleware
+app.use(compression()); 
+app.use(bodyParser.json()); 
+
+
+app.get("/", (req, res) => {
+  response.json({ info: "Node.js, Express, and Postgres API" });
+});
+
+app.post("/users", db.createUser);
+app.post("/login", db.login);
+
 app.listen(5000, () => {
     console.log("server from port 5000");
 });
+
+
+// {
+//     "username": "cheng",
+//     "email": "test@ttp.com",
+//     "password": "12345"
+// }
